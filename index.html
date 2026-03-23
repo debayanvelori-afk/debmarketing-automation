@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Simple Todo App</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>My Todo List</h1>
+
+    <form id="todo-form">
+      <div class="form-row">
+        <input type="text" id="task-input" placeholder="What do you need to do?" required>
+        <select id="priority-input">
+          <option value="low">Low</option>
+          <option value="medium" selected>Medium</option>
+          <option value="high">High</option>
+        </select>
+      </div>
+      <div class="form-row">
+        <input type="text" id="label-input" placeholder="Label (e.g. Work, Personal)">
+        <button type="submit">Add Task</button>
+      </div>
+    </form>
+
+    <div class="filters">
+      <button class="filter-btn active" data-filter="all">All</button>
+      <button class="filter-btn" data-filter="active">Active</button>
+      <button class="filter-btn" data-filter="completed">Completed</button>
+    </div>
+
+    <ul id="todo-list"></ul>
+
+    <p id="empty-msg" class="empty-msg">No tasks yet. Add one above!</p>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
