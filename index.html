@@ -3,37 +3,80 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Simple Todo App</title>
+  <title>Landing Page Analyzer</title>
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <div class="container">
-    <h1>My Todo List</h1>
+  <div class="dashboard">
+    <header class="header">
+      <h1>Landing Page Analyzer</h1>
+      <p class="subtitle">Paste your landing page copy to get actionable insights</p>
+    </header>
 
-    <form id="todo-form">
-      <div class="form-row">
-        <input type="text" id="task-input" placeholder="What do you need to do?" required>
-        <select id="priority-input">
-          <option value="low">Low</option>
-          <option value="medium" selected>Medium</option>
-          <option value="high">High</option>
-        </select>
+    <main class="main">
+      <section class="input-section">
+        <label for="page-text">Landing Page Text</label>
+        <textarea id="page-text" placeholder="Paste your landing page text here... Include your headline, subheadline, body copy, and call-to-action buttons." rows="10"></textarea>
+        <button id="analyze-btn" class="btn-analyze">Analyze</button>
+      </section>
+
+      <section id="results" class="results hidden">
+        <div class="score-card">
+          <div class="score-ring">
+            <svg viewBox="0 0 120 120">
+              <circle class="score-bg" cx="60" cy="60" r="52" />
+              <circle id="score-circle" class="score-fill" cx="60" cy="60" r="52" />
+            </svg>
+            <span id="score-value" class="score-number">0</span>
+          </div>
+          <div class="score-label">Overall Score</div>
+        </div>
+
+        <div class="breakdown">
+          <div class="metric-card" id="metric-headline">
+            <div class="metric-header">
+              <span class="metric-title">Headline Strength</span>
+              <span class="metric-score" id="headline-score">0</span>
+            </div>
+            <div class="meter"><div class="meter-fill" id="headline-meter"></div></div>
+            <ul class="suggestions" id="headline-suggestions"></ul>
+          </div>
+
+          <div class="metric-card" id="metric-cta">
+            <div class="metric-header">
+              <span class="metric-title">CTA Clarity</span>
+              <span class="metric-score" id="cta-score">0</span>
+            </div>
+            <div class="meter"><div class="meter-fill" id="cta-meter"></div></div>
+            <ul class="suggestions" id="cta-suggestions"></ul>
+          </div>
+
+          <div class="metric-card" id="metric-readability">
+            <div class="metric-header">
+              <span class="metric-title">Readability</span>
+              <span class="metric-score" id="readability-score">0</span>
+            </div>
+            <div class="meter"><div class="meter-fill" id="readability-meter"></div></div>
+            <ul class="suggestions" id="readability-suggestions"></ul>
+          </div>
+        </div>
+
+        <div class="improvement-section">
+          <h3>Key Improvements</h3>
+          <ul id="improvements"></ul>
+        </div>
+      </section>
+    </main>
+
+    <aside class="history-panel">
+      <div class="history-header">
+        <h2>History</h2>
+        <button id="clear-history" class="btn-clear">Clear All</button>
       </div>
-      <div class="form-row">
-        <input type="text" id="label-input" placeholder="Label (e.g. Work, Personal)">
-        <button type="submit">Add Task</button>
+      <div id="history-list" class="history-list">
+        <p class="empty-history">No analyses yet</p>
       </div>
-    </form>
-
-    <div class="filters">
-      <button class="filter-btn active" data-filter="all">All</button>
-      <button class="filter-btn" data-filter="active">Active</button>
-      <button class="filter-btn" data-filter="completed">Completed</button>
-    </div>
-
-    <ul id="todo-list"></ul>
-
-    <p id="empty-msg" class="empty-msg">No tasks yet. Add one above!</p>
+    </aside>
   </div>
 
   <script src="app.js"></script>
